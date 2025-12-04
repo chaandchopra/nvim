@@ -30,3 +30,4 @@ vim.opt.updatetime = 50                  -- Faster update time for CursorHold ev
 
 vim.opt.colorcolumn = "80"               -- Highlight column 80 as a visual guide
 
+vim.opt.completeopt = {"menu", "menuone", "noselect"}
