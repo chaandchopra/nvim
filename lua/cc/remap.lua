@@ -74,6 +74,9 @@ vim.keymap.set("i", "<C-c>", "<Esc>")
 --     require("cellular-automaton").start_animation("make_it_rain")
 -- end)
 
-vim.keymap.set("n", "<leader><leader>", function()
-    vim.cmd("so")
-end)
+-- vim.keymap.set("n", "<leader><leader>", function()
+--     vim.cmd("so")
+-- end)
+
+vim.keymap.set("n", "<leader>ba", "o breakpoint()<Esc>==")
+vim.keymap.set("n", "<leader>Ba", "Obreakpoint()<Esc>==")

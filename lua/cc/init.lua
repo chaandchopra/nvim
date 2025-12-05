@@ -56,3 +56,15 @@ autocmd('LspAttach', {
 vim.g.netrw_browse_split = 0
 vim.g.netrw_banner = 0
 vim.g.netrw_winsize = 25
+
+
+vim.api.nvim_create_user_command("DiffOrig", function()
+  vim.cmd("vert new")
+  vim.cmd("setlocal buftype=nofile")
+  vim.cmd("read #")
+  vim.cmd("normal! 1Gdd")
+  vim.cmd("diffthis")
+  vim.cmd("wincmd p")
+  vim.cmd("diffthis")
+end, {})
+
