@@ -80,3 +80,21 @@ vim.keymap.set("i", "<C-c>", "<Esc>")
 
 vim.keymap.set("n", "<leader>ba", "o breakpoint()<Esc>==")
 vim.keymap.set("n", "<leader>Ba", "Obreakpoint()<Esc>==")
+
+-- Copy file path to system clipboard
+vim.keymap.set("n", "<leader>cp", function()
+  vim.fn.setreg("+", vim.fn.expand("%:."))
+end, { desc = "Copy relative file path" })
+
+vim.keymap.set("n", "<leader>cP", function()
+  vim.fn.setreg("+", vim.fn.expand("%:p"))
+end, { desc = "Copy absolute file path" })
+
+-- Optional extras (highly recommended)
+vim.keymap.set("n", "<leader>cf", function()
+  vim.fn.setreg("+", vim.fn.expand("%:t"))
+end, { desc = "Copy filename only" })
+
+vim.keymap.set("n", "<leader>cd", function()
+  vim.fn.setreg("+", vim.fn.expand("%:p:h"))
+end, { desc = "Copy directory path" })
