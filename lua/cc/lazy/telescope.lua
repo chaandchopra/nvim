@@ -24,7 +24,7 @@ return {
             builtin.grep_string({ search = vim.fn.input("grep > ") })
         end)
 
-        local marked_files = {}       
+        local marked_files = {}
 
         function MarkFile()
             local file = vim.fn.expand("%:p")
