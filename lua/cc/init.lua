@@ -3,7 +3,7 @@ require("cc.remap")
 require("cc.lazy_init")
 
 local augroup = vim.api.nvim_create_augroup
-local ThePrimeagenGroup = augroup('ThePrimeagen', {})
+local chaand = augroup('cc', {})
 
 local autocmd = vim.api.nvim_create_autocmd
 local yank_group = augroup('HighlightYank', {})
@@ -25,19 +25,19 @@ autocmd('TextYankPost', {
     end,
 })
 
--- Building features like IDE 
--- gd = it will go the definition of the function 
+-- Building features like IDE
+-- gd = it will go the definition of the function
 -- K  = it will open the documentation of the function/variable
 -- vws= search for any symbol in the entire project workspace
--- vd = view diagonsitics 
+-- vd = view diagonsitics
 -- vca= Opens a menu of code actions recommended by the LSP.
 -- vrr=
 -- vrn= Renames a variable/function/class everywhere in your project — safely.
 -- c-h= Shows function parameter hints while typing.
--- [d = previous warning 
--- ]d = next warning 
+-- [d = previous warning
+-- ]d = next warning
 autocmd('LspAttach', {
-    group = ThePrimeagenGroup,
+    group = chaand,
     callback = function(e)
         local opts = { buffer = e.buf }
         vim.keymap.set("n", "gd", function() vim.lsp.buf.definition() end, opts)
@@ -53,18 +53,30 @@ autocmd('LspAttach', {
     end
 })
 
+autocmd("CursorHold", {
+    callback = function()
+        vim.lsp.buf.document_highlight()
+    end,
+})
+
+autocmd("CursorMoved", {
+    callback = function()
+        vim.lsp.buf.clear_references()
+    end,
+})
+
+
 vim.g.netrw_browse_split = 0
 vim.g.netrw_banner = 0
 vim.g.netrw_winsize = 25
 
 
 vim.api.nvim_create_user_command("DiffOrig", function()
-  vim.cmd("vert new")
-  vim.cmd("setlocal buftype=nofile")
-  vim.cmd("read #")
-  vim.cmd("normal! 1Gdd")
-  vim.cmd("diffthis")
-  vim.cmd("wincmd p")
-  vim.cmd("diffthis")
+    vim.cmd("vert new")
+    vim.cmd("setlocal buftype=nofile")
+    vim.cmd("read #")
+    vim.cmd("normal! 1Gdd")
+    vim.cmd("diffthis")
+    vim.cmd("wincmd p")
+    vim.cmd("diffthis")
 end, {})
-

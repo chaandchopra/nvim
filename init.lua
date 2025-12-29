@@ -1,1 +1,1 @@
-require("cc") 
+require("cc")
