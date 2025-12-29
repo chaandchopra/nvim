@@ -1,4 +1,4 @@
-vim.opt.guicursor = ""                   -- Use block cursor in all modes
+-- vim.opt.guicursor = ""                   -- Use block cursor in all modes
 
 vim.opt.nu = true                        -- Show absolute line numbers
 vim.opt.relativenumber = true            -- Show relative line numbers
@@ -32,3 +32,5 @@ vim.opt.colorcolumn = "80"               -- Highlight column 80 as a visual guid
 
 vim.opt.completeopt = {"menu", "menuone", "noselect"}
 vim.opt.cursorline = true
+
+vim.opt.rtp:append("/home/chaandchopra/git/docker-mover")
