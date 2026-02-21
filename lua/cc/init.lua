@@ -29,10 +29,10 @@ autocmd('TextYankPost', {
 -- gd = it will go the definition of the function
 -- K  = it will open the documentation of the function/variable
 -- vws= search for any symbol in the entire project workspace
--- vd = view diagonsitics
+-- vd = view diagnostics
 -- vca= Opens a menu of code actions recommended by the LSP.
 -- vrr=
--- vrn= Renames a variable/function/class everywhere in your project — safely.
+-- vrn= Renames a variable/function/class everywhere in your project - safely.
 -- c-h= Shows function parameter hints while typing.
 -- [d = previous warning
 -- ]d = next warning
@@ -55,7 +55,13 @@ autocmd('LspAttach', {
 
 autocmd("CursorHold", {
     callback = function()
-        vim.lsp.buf.document_highlight()
+        local clients = vim.lsp.get_active_clients({ bufnr = 0 })
+        for _, client in ipairs(clients) do
+            if client.server_capabilities.documentHighlightProvider then
+                vim.lsp.buf.document_highlight()
+                return
+            end
+        end
     end,
 })
 
@@ -64,12 +70,6 @@ autocmd("CursorMoved", {
         vim.lsp.buf.clear_references()
     end,
 })
-
-
-vim.g.netrw_browse_split = 0
-vim.g.netrw_banner = 0
-vim.g.netrw_winsize = 25
-
 
 vim.api.nvim_create_user_command("DiffOrig", function()
     vim.cmd("vert new")
