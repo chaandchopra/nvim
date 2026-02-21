@@ -13,11 +13,20 @@ return {
         local builtin = require('telescope.builtin')
         vim.keymap.set('n', '<leader>pf', builtin.find_files, {})
 
+        vim.keymap.set('n', '<leader><leader>', builtin.oldfiles, {})
+
+
         vim.keymap.set('n', '<c-p>', builtin.git_files, {})
 
         vim.keymap.set('n', '<leader>pws', function()
             local word = vim.fn.expand("<cword>")
             builtin.grep_string({ search = word })
+        end)
+
+        vim.keymap.set('n', '<leader>pps', function()
+            local word = vim.fn.expand("<cword>")
+            local file = vim.fn.expand("%:p")
+            builtin.grep_string({ search = word, search_dirs = { file } })
         end)
 
         vim.keymap.set('n', '<leader>ps', function()
@@ -73,5 +82,3 @@ return {
         vim.keymap.set("n", "<leader>4", function() JumpToMark(4) end)
     end
 }
-
-

@@ -33,7 +33,7 @@ vim.keymap.set({ "n", "v" }, "<leader>d", "\"_d")
 
 -- This is going to get me cancelled
 vim.keymap.set("i", "<C-c>", "<Esc>")
-vim.keymap.set("v", "<C-j>", "<Esc>")
+vim.keymap.set("i", "<C-j>", "<Esc>")
 
 -- vim.keymap.set("n", "Q", "<nop>")
 -- vim.keymap.set("n", "<C-f>", "<cmd>silent !tmux neww tmux-sessionizer<CR>")
@@ -87,7 +87,7 @@ vim.keymap.set("n", "<leader>Ba", "Obreakpoint()<Esc>==")
 vim.keymap.set("n", "o", "o<Esc>", { silent = true, desc = "New line below (Normal mode)" })
 
 -- Insert new line above, stay in Normal mode
-vim.keymap.set("n", "O", "O<Esc>", { silent = true, desc = "New line below (Normal mode)" })
+vim.keymap.set("n", "O", "O<Esc>", { silent = true, desc = "New line above (Normal mode)" })
 
 -- Copy file path to system clipboard
 vim.keymap.set("n", "<leader>cp", function()

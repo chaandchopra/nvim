@@ -43,3 +43,7 @@ vim.opt.listchars = {
     trail = '×', -- Show trailing spaces as ×
     nbsp = '␣', -- Show non-breaking spaces
 }
+
+--enable code folding
+vim.pot.foldmethod = "expr"
+vim.opt.foldexpr = "nvim_treesitter#foldexpr()"
