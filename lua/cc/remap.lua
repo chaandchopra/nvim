@@ -3,6 +3,7 @@ vim.keymap.set("n", "<leader>q", vim.cmd.Ex)
 
 vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")
 vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv")
+vim.keymap.set("v", "<C-j>", "<Esc>")
 
 -- vim.api.nvim_set_keymap("n", "<leader>tf", "<Plug>PlenaryTestFile", { noremap = false, silent = false })
 
@@ -32,44 +33,45 @@ vim.keymap.set({ "n", "v" }, "<leader>d", "\"_d")
 
 -- This is going to get me cancelled
 vim.keymap.set("i", "<C-c>", "<Esc>")
+vim.keymap.set("v", "<C-j>", "<Esc>")
 
 -- vim.keymap.set("n", "Q", "<nop>")
 -- vim.keymap.set("n", "<C-f>", "<cmd>silent !tmux neww tmux-sessionizer<CR>")
 -- vim.keymap.set("n", "<M-h>", "<cmd>silent !tmux-sessionizer -s 0 --vsplit<CR>")
 -- vim.keymap.set("n", "<M-H>", "<cmd>silent !tmux neww tmux-sessionizer -s 0<CR>")
--- 
--- vim.keymap.set("n", "<C-k>", "<cmd>cnext<CR>zz")
--- vim.keymap.set("n", "<C-j>", "<cmd>cprev<CR>zz")
--- vim.keymap.set("n", "<leader>k", "<cmd>lnext<CR>zz")
--- vim.keymap.set("n", "<leader>j", "<cmd>lprev<CR>zz")
+--
+vim.keymap.set("n", "<C-k>", "<cmd>cnext<CR>zz")
+vim.keymap.set("n", "<C-j>", "<cmd>cprev<CR>zz")
+vim.keymap.set("n", "<leader>k", "<cmd>lnext<CR>zz")
+vim.keymap.set("n", "<leader>j", "<cmd>lprev<CR>zz")
 
 -- vim.keymap.set("n", "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])
 -- vim.keymap.set("n", "<leader>x", "<cmd>!chmod +x %<CR>", { silent = true })
--- 
+--
 -- vim.keymap.set(
 --     "n",
 --     "<leader>ee",
 --     "oif err != nil {<CR>}<Esc>Oreturn err<Esc>"
 -- )
--- 
+--
 -- vim.keymap.set(
 --     "n",
 --     "<leader>ea",
 --     "oassert.NoError(err, \"\")<Esc>F\";a"
 -- )
--- 
+--
 -- vim.keymap.set(
 --     "n",
 --     "<leader>ef",
 --     "oif err != nil {<CR>}<Esc>Olog.Fatalf(\"error: %s\\n\", err.Error())<Esc>jj"
 -- )
--- 
+--
 -- vim.keymap.set(
 --     "n",
 --     "<leader>el",
 --     "oif err != nil {<CR>}<Esc>O.logger.Error(\"error\", \"error\", err)<Esc>F.;i"
 -- )
--- 
+--
 -- vim.keymap.set("n", "<leader>ca", function()
 --     require("cellular-automaton").start_animation("make_it_rain")
 -- end)
@@ -81,20 +83,26 @@ vim.keymap.set("i", "<C-c>", "<Esc>")
 vim.keymap.set("n", "<leader>ba", "o breakpoint()<Esc>==")
 vim.keymap.set("n", "<leader>Ba", "Obreakpoint()<Esc>==")
 
+-- Insert new line below, stay in Normal mode
+vim.keymap.set("n", "o", "o<Esc>", { silent = true, desc = "New line below (Normal mode)" })
+
+-- Insert new line above, stay in Normal mode
+vim.keymap.set("n", "O", "O<Esc>", { silent = true, desc = "New line below (Normal mode)" })
+
 -- Copy file path to system clipboard
 vim.keymap.set("n", "<leader>cp", function()
-  vim.fn.setreg("+", vim.fn.expand("%:."))
+    vim.fn.setreg("+", vim.fn.expand("%:."))
 end, { desc = "Copy relative file path" })
 
 vim.keymap.set("n", "<leader>cP", function()
-  vim.fn.setreg("+", vim.fn.expand("%:p"))
+    vim.fn.setreg("+", vim.fn.expand("%:p"))
 end, { desc = "Copy absolute file path" })
 
 -- Optional extras (highly recommended)
 vim.keymap.set("n", "<leader>cf", function()
-  vim.fn.setreg("+", vim.fn.expand("%:t"))
+    vim.fn.setreg("+", vim.fn.expand("%:t"))
 end, { desc = "Copy filename only" })
 
 vim.keymap.set("n", "<leader>cd", function()
-  vim.fn.setreg("+", vim.fn.expand("%:p:h"))
+    vim.fn.setreg("+", vim.fn.expand("%:p:h"))
 end, { desc = "Copy directory path" })
