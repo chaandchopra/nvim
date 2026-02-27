@@ -6,19 +6,26 @@ function ColorMyPencils(color)
     vim.api.nvim_set_hl(0, "NormalFloat", { bg = "none" })
 end
 
+-- return {
+--     "catppuccin/nvim", name = "catppuccin", priority = 1000,
+--     config = function()
+--         require("catppuccin").setup({
+--             flavour = "mocha", -- latte, frappe, macchiato, mocha
+--             disable_background = true,
+--             styles = {
+--                 italic = false,
+--             },
+--         })
+--         vim.cmd.colorscheme("catppuccin")
+--         ColorMyPencils();
+--     end
+-- }
+
 return {
-    "catppuccin/nvim",
-    name = "catppuccin",
-    priority = 1000,
+    "rose-pine/neovim",
+    name = "rose-pine",
     config = function()
-        require("catppuccin").setup({
-            flavour = "mocha", -- latte, frappe, macchiato, mocha
-            disable_background = true,
-            styles = {
-                italic = false,
-            },
-        })
-        vim.cmd.colorscheme("catppuccin")
+        vim.cmd("colorscheme rose-pine")
         ColorMyPencils();
     end
 }
