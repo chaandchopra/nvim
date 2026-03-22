@@ -107,3 +107,9 @@ end, { desc = "Copy filename only" })
 vim.keymap.set("n", "<leader>cd", function()
     vim.fn.setreg("+", vim.fn.expand("%:p:h"))
 end, { desc = "Copy directory path" })
+
+-- search remap
+-- Search and replace the word under the cursor
+vim.keymap.set("n", "<leader>pr", [[:%s/\<<C-r><C-w>\>//gc<Left><Left><Left>]], {
+    desc = "Search and replace word under cursor"
+})
