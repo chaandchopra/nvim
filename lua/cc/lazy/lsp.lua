@@ -46,7 +46,7 @@ return {
         require("mason").setup()
         require("mason-lspconfig").setup({
             ensure_installed = {
-                "pyright", -- Python
+                "pyright",       -- Python
                 "rust_analyzer", -- Rust
             },
             handlers = {
@@ -64,7 +64,7 @@ return {
                 ["lua_ls"] = function()
                     require("lspconfig").lua_ls.setup {
                         capabilities = capabilities,
-                        settings = { Lua = { diagnostics = { globals = { "vim" } } } }
+                        settings = { Lua = { diagnostics = { globals = { "vim", "require" } } } }
                     }
                 end,
             }
