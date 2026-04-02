@@ -2,81 +2,33 @@ return {
     "nvim-telescope/telescope.nvim",
 
     dependencies = {
-        "nvim-lua/plenary.nvim"
+        "nvim-lua/plenary.nvim",
+        { 'nvim-telescope/telescope-fzf-native.nvim', build = 'make' },
+        'nvim-telescope/telescope-ui-select.nvim',
+        'nvim-tree/nvim-web-devicons',
+        'nvim-telescope/telescope-live-grep-args.nvim',
     },
 
     config = function()
+        local builtin = require('telescope.builtin')
+        local actions = require('telescope.actions')
         require('telescope').setup({})
 
-        local builtin = require('telescope.builtin')
-        vim.keymap.set('n', '<leader>pf', builtin.find_files, {})
+        require("telescope").load_extension('fzf')
 
-        vim.keymap.set('n', '<leader><leader>', builtin.oldfiles, {})
+        vim.keymap.set('n', '<leader>ff', builtin.find_files, {})
 
-
-        vim.keymap.set('n', '<c-p>', builtin.git_files, {})
-
-        vim.keymap.set('n', '<leader>pws', function()
-            local word = vim.fn.expand("<cword>")
-            builtin.grep_string({ search = word })
+        vim.keymap.set('n', '<leader><leader>', function()
+            builtin.oldfiles({ cwd_only = true })
         end)
 
-        vim.keymap.set('n', '<leader>pps', function()
-            local word = vim.fn.expand("<cword>")
-            local file = vim.fn.expand("%:p")
-            builtin.grep_string({ search = word, search_dirs = { file } })
-        end)
 
         vim.keymap.set('n', '<leader>ps', function()
             builtin.grep_string({ search = vim.fn.input("grep > ") })
         end)
 
-        local marked_files = {}
+        vim.keymap.set('n', '<c-p>', builtin.git_files, {})
 
-        function MarkFile()
-            local file = vim.fn.expand("%:p")
-            table.insert(marked_files, file)
-            print("Marked: " .. file)
-        end
-
-        function JumpToMark(n)
-            local file = marked_files[n]
-            if file then
-                vim.cmd("edit " .. file)
-            else
-                print("No file in slot " .. n)
-            end
-        end
-
-        function PickMarkedFiles()
-            require("telescope.pickers").new({}, {
-                prompt_title = "Marked Files",
-                finder = require("telescope.finders").new_table {
-                    results = marked_files,
-                },
-                sorter = require("telescope.config").values.generic_sorter({}),
-                attach_mappings = function(_, map)
-                    map("i", "<CR>", function(prompt_bufnr)
-                        local entry = require("telescope.actions.state").get_selected_entry()
-                        require("telescope.actions").close(prompt_bufnr)
-                        vim.cmd("edit " .. entry.value)
-                    end)
-                    map("n", "<CR>", function(prompt_bufnr)
-                        local entry = require("telescope.actions.state").get_selected_entry()
-                        require("telescope.actions").close(prompt_bufnr)
-                        vim.cmd("edit " .. entry.value)
-                    end)
-                    return true
-                end,
-            }):find()
-        end
-
-        -- Keymaps for marking
-        vim.keymap.set("n", "<leader>a", MarkFile, {})
-        vim.keymap.set("n", "<leader>h", PickMarkedFiles, {})
-        vim.keymap.set("n", "<leader>1", function() JumpToMark(1) end)
-        vim.keymap.set("n", "<leader>2", function() JumpToMark(2) end)
-        vim.keymap.set("n", "<leader>3", function() JumpToMark(3) end)
-        vim.keymap.set("n", "<leader>4", function() JumpToMark(4) end)
+        vim.keymap.set("n", "<space>gw", builtin.grep_string)
     end
 }

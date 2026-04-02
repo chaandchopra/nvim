@@ -7,7 +7,7 @@ return {
     config = function()
         require("oil").setup({
             columns = {
-                "icon", "mtime"
+                "icon", "mtime", "size"
             },
             default_file_explorer = true, -- replace netrw
             delete_to_trash = true,       -- macOS/Windows friendly
