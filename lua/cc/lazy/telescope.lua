@@ -22,13 +22,31 @@ return {
             builtin.oldfiles({ cwd_only = true })
         end)
 
-
-        vim.keymap.set('n', '<leader>ps', function()
+        vim.keymap.set('n', '<leader>fw', function()
             builtin.grep_string({ search = vim.fn.input("grep > ") })
         end)
 
         vim.keymap.set('n', '<c-p>', builtin.git_files, {})
 
         vim.keymap.set("n", "<space>gw", builtin.grep_string)
+
+        --  6. Search within current buffer
+        vim.keymap.set('n', '<leader>/', function()
+            builtin.current_buffer_fuzzy_find(require('telescope.themes').get_dropdown {
+                winblend = 10,
+                previewer = false,
+            })
+        end, { desc = "Fuzzy find in current buffer" })
+
+        vim.keymap.set('n', '<leader>fn', function()
+            -- Prompt the user for a filename first
+            local file_name = vim.fn.input("Search Filename: ")
+            if file_name == "" then return end
+
+            builtin.find_files({
+                query = file_name,
+                search_file = file_name, -- This forces the match on the filename
+            })
+        end, { desc = "Find File (Name Only)" })
     end
 }
