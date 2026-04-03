@@ -5,9 +5,9 @@
 plugins=(
   git
   python
-  extract           
-  z                 
-  history           
+  extract
+  z
+  history
   zsh-autosuggestions
   zsh-syntax-highlighting
 )
