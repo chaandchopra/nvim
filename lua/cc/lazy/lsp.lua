@@ -95,9 +95,8 @@ return {
 
         -- Hover and Diagnostics
         vim.diagnostic.config({
-            virtual_text = { prefix = '●' },
             update_in_insert = false,
-            float = { border = "rounded" },
+            virtual_text = false,
         })
     end
 }

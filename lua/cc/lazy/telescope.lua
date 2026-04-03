@@ -13,7 +13,6 @@ return {
         local builtin = require('telescope.builtin')
         local actions = require('telescope.actions')
         require('telescope').setup({})
-
         require("telescope").load_extension('fzf')
 
         vim.keymap.set('n', '<leader>ff', builtin.find_files, {})

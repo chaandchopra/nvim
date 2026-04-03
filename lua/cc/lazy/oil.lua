@@ -29,8 +29,8 @@ return {
                 ["<C-c>"] = "actions.close",
                 ["<Esc>"] = "actions.close",
                 ["<leader>t"] = "actions.open_terminal",
-                ["gy"] = "actions.yank_entry",
-                ["<leader>gy"] = {
+                ["<leader>cf"] = "actions.yank_entry",
+                ["<leader>cp"] = {
                     desc = "Copy filepath to system clipboard",
                     callback = function()
                         require("oil.actions").copy_entry_path.callback()

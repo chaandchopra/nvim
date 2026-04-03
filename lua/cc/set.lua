@@ -28,7 +28,7 @@ vim.opt.isfname:append("@-@")                          -- Allow @ and - in filen
 
 vim.opt.updatetime = 50                                -- Faster update time for CursorHold events, etc.
 
-vim.opt.colorcolumn = "80"                             -- Highlight column 80 as a visual guide
+vim.opt.colorcolumn = "120"                            -- Highlight column 80 as a visual guide
 
 vim.opt.completeopt = { "menu", "menuone", "noselect" }
 vim.opt.cursorline = true
