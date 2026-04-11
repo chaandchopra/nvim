@@ -41,6 +41,7 @@ autocmd('LspAttach', {
     callback = function(e)
         local opts = { buffer = e.buf }
         vim.keymap.set("n", "gd", function() vim.lsp.buf.definition() end, opts)
+        vim.keymap.set("n", "gi", function() vim.lsp.buf.implementation() end, opts)
         vim.keymap.set("n", "K", function() vim.lsp.buf.hover() end, opts)
         vim.keymap.set("n", "<leader>vws", function() vim.lsp.buf.workspace_symbol() end, opts)
         vim.keymap.set("n", "<leader>vd", function() vim.diagnostic.open_float() end, opts)
@@ -51,18 +52,6 @@ autocmd('LspAttach', {
         vim.keymap.set("n", "[d", function() vim.diagnostic.goto_next() end, opts)
         vim.keymap.set("n", "]d", function() vim.diagnostic.goto_prev() end, opts)
     end
-})
-
-autocmd("CursorHold", {
-    callback = function()
-        local clients = vim.lsp.get_active_clients({ bufnr = 0 })
-        for _, client in ipairs(clients) do
-            if client.server_capabilities.documentHighlightProvider then
-                vim.lsp.buf.document_highlight()
-                return
-            end
-        end
-    end,
 })
 
 autocmd("CursorMoved", {

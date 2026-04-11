@@ -11,31 +11,6 @@ return {
         "L3MON4D3/LuaSnip",
         "saadparwaiz1/cmp_luasnip",
         "j-hui/fidget.nvim",
-        -- AI & CHAT INTEGRATION
-        {
-            "zbirenbaum/copilot.lua",
-            cmd = "Copilot",
-            event = "InsertEnter",
-            config = function()
-                require("copilot").setup({
-                    suggestion = { enabled = false }, -- Using cmp-copilot instead
-                    panel = { enabled = false },
-                })
-            end,
-        },
-        {
-            "CopilotC-Nvim/CopilotChat.nvim",
-            branch = "main",
-            dependencies = { "zbirenbaum/copilot.lua", "nvim-lua/plenary.nvim" },
-            opts = { debug = false },
-            keys = {
-                { "<leader>cc", "<cmd>CopilotChatToggle<cr>",  desc = "CopilotChat - Toggle" },
-                { "<leader>ce", "<cmd>CopilotChatExplain<cr>", desc = "CopilotChat - Explain code" },
-            },
-        },
-        { "zbirenbaum/copilot-cmp",  config = function() require("copilot_cmp").setup() end },
-        -- RUST ENHANCEMENT
-        { "simrat39/rust-tools.nvim" },
     },
 
     config = function()

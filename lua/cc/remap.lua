@@ -43,8 +43,13 @@ vim.keymap.set("i", "<C-f>", "<Esc>:w")
 --
 vim.keymap.set("n", "<C-k>", "<cmd>cnext<CR>zz")
 vim.keymap.set("n", "<C-j>", "<cmd>cprev<CR>zz")
-vim.keymap.set("n", "<leader>k", "<cmd>lnext<CR>zz")
-vim.keymap.set("n", "<leader>j", "<cmd>lprev<CR>zz")
+-- vim.keymap.set("n", "<leader>k", "<cmd>lnext<CR>zz")
+-- vim.keymap.set("n", "<leader>j", "<cmd>lprev<CR>zz")
+
+vim.keymap.set("n", "<C-h>", "<C-w>h", { desc = "Move to left window", remap = true })
+vim.keymap.set("n", "<C-j>", "<C-w>j", { desc = "Move to bottom window", remap = true })
+vim.keymap.set("n", "<C-k>", "<C-w>k", { desc = "Move to top window", remap = true })
+vim.keymap.set("n", "<C-l>", "<C-w>l", { desc = "Move to right window", remap = true })
 
 -- vim.keymap.set("n", "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])
 -- vim.keymap.set("n", "<leader>x", "<cmd>!chmod +x %<CR>", { silent = true })

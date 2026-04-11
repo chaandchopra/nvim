@@ -47,3 +47,14 @@ vim.opt.listchars = {
 --enable code folding
 vim.opt.foldmethod = "expr"
 vim.opt.foldexpr = "nvim_treesitter#foldexpr()"
+vim.opt.foldlevel = 99
+vim.opt.foldlevelstart = 99
+
+vim.opt.splitright = true -- vertical splits open on the right
+vim.opt.splitbelow = true -- horizontal splits open below
+
+vim.opt.sessionoptions = "buffers,curdir,tabpages,winsize"
+
+vim.keymap.set("n", "<leader>ds", function()
+    vim.cmd("vert diffsplit" .. vim.fn.expand("%:p"))
+end, { desc = "Diff vs saved" })
